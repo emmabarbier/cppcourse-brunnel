@@ -7,7 +7,7 @@ add_subdirectory(googletest)
 include_directories(${gtest_SOURCE_DIR}/include ${gtest_SOURCE_DIR})
 
 add_executable(test3 neuron.cpp test3.cpp)
-add_executable(test4 network.cpp test4.cpp)
+add_executable(test4 network.cpp neuron.cpp test4.cpp)
 
 add_executable(neuron_unittest neuron.cpp neuron_unittest.cpp)
 

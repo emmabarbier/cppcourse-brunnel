@@ -19,8 +19,9 @@ int main () {
 	cin >> time_end;
 	
 	//creer un network avec ces trois valeurs
+	Network network(time_start, time_end, I);
 	
-	//appeler update de network (lui même appelle update de neuron)
+	//appeler update de network (lui même appelle update de neuron) avec en argument la general clock
 	
 	return 0;
 }

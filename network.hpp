@@ -15,13 +15,13 @@ private :
 	const unsigned int n_neurons_ = 12500;
 	const int Ne_ = 10000;
 	const int Ni_ = 2500;
-	const int w_= 5;
+	const int g_= 5;
 	const unsigned int Ce = 1000;
 	const unsigned int Ci = 250;
 	double Je = 0.1;
 	
 	
-	vector < vector<int> > ConnexionSet_; //comment initialiser la taille a 12500 par 12500
+	//vector < vector<int> > ConnexionSet_ = 	vector < vector<int> > (12500, vector<int> (12500)); //comment initialiser la taille a 12500 par 12500
 	vector < Neuron*> NeuronSet_; 
 
 public:
@@ -32,7 +32,7 @@ public:
 	//methods
 	void connect();
 	void allocate(int nb_neurons);
-	void update();
+	void update(int General_clock);
 		
 		
 };
