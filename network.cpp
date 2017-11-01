@@ -11,7 +11,6 @@ Network::Network(int time_start, int time_end, double I)
 	: time_start_(time_start), time_end_(time_end), I_(I)
 	{
 		allocate(n_neurons_);
-		//ConnexionSet_.resize(12500, vector<int> (12500));
 	}
 
 //======================================================================
@@ -45,6 +44,8 @@ void Network::connect() {
 	uniform_int_distribution<> exct(0,Ne_-1);
 	uniform_int_distribution<> inhb(Ne_,n_neurons_-1);
 	
+	//int i;
+	
 	for (size_t x(0); x< n_neurons_; ++x) {
 		
 		/// les 12500 neurons recoivent chacun 1000 connexions des neurons exitateurs (les 10000 premiers de l'axe y) choisis aleatoirement a chaque fois
@@ -52,11 +53,14 @@ void Network::connect() {
 			size_t Sending_neuron(exct(gen)); ///choix aleatoire du neuron qui envois la connection a x, ici on s'assure que chaque neuron recoit bien 1000 connections exitatrices
 			NeuronSet_[Sending_neuron] -> setSendTo(x); ///le tableau SendTo du neuron qui envois (donc sending neuron) est implemente par l'indice de celui a qui il envois, donc x
 		}
-		
+
 		for (size_t y(0); y< Ci; ++y) { 
 			size_t Sending_neuron(inhb(gen));
 			NeuronSet_[Sending_neuron] -> setSendTo(x);
 		}
+		//++i;
+		//cout << "i= " << i << endl;
+		//cout << "taille de sendTo de " << x << ": " << 
 	}
 }
 
