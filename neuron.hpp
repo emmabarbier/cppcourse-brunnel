@@ -22,12 +22,10 @@ private:
 	double J_;
 	double I_;
 	bool spike_;
-	const int Vext = 20;
+	const int Vext_ = 20;
 	vector <double> buffer_;
-	vector <int>SendTo_;
+	vector <int> SendTo_;
 	int D_; ///delay in ms --> is converted in steps in teh constructor
-	static random device rd;
-	mt19937 gene(rd());
 	poisson_distribution<> poisson_generator_; 
 	
 	
@@ -43,18 +41,18 @@ public:
 	bool getStateSpike_() const;
 	double getJ() const;
 	int getD() const;
-	vector<int> &getSendTo() const;
+	vector<int> const& getSendTo() const;
 	
 	//setter
 	void setV (const double& V);
 	void setSendTo (const double& n);
-	//void setI (const double& I);
 	
 	//methods
 	bool update();
 	void Interact(Neuron &other);
 	void addJ(double J, int D);
 	double getValueBuffer();
+	int poisson();
 	
 	
 	///fct pour regarder la valeur dans le tableau

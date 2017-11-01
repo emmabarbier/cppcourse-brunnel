@@ -42,8 +42,8 @@ void Network::connect() {
 	
 	random_device rd;
 	mt19937 gen(rd());
-	uniform_int_distribution<> exct(0,Ne-1);
-	uniform_int_distribution<> inhb(Ne,n_neurons_-1);
+	uniform_int_distribution<> exct(0,Ne_-1);
+	uniform_int_distribution<> inhb(Ne_,n_neurons_-1);
 	
 	for (size_t x(0); x< n_neurons_; ++x) {
 		
@@ -51,15 +51,11 @@ void Network::connect() {
 		for (size_t y(0); y< Ce; ++y) {
 			size_t Sending_neuron(exct(gen)); ///choix aleatoire du neuron qui envois la connection a x, ici on s'assure que chaque neuron recoit bien 1000 connections exitatrices
 			NeuronSet_[Sending_neuron] -> setSendTo(x); ///le tableau SendTo du neuron qui envois (donc sending neuron) est implemente par l'indice de celui a qui il envois, donc x
-			
-			
-			//NeuronSet[Sending_neuron] -> SendTo.push_back[x]; 
 		}
 		
 		for (size_t y(0); y< Ci; ++y) { 
 			size_t Sending_neuron(inhb(gen));
 			NeuronSet_[Sending_neuron] -> setSendTo(x);
-			//ConnexionSet_[x][target_neuron] +=1;
 		}
 	}
 }

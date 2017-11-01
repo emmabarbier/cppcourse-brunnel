@@ -10,7 +10,7 @@ using namespace std;
 
 //default constructor
 Neuron::Neuron(int time, double I, double D)
-	:  V_(0), nb_spikes_(0), time_(time), threshold_(20), isRefractory_(0), tau_(20.), tauRef_(2), h_(0.1), R_(20), J_(0.1), I_(I), spike_(false), buffer_(16, 0), D_(D/0.1), generator_(Vext_*h_)  {}
+	:  V_(0), nb_spikes_(0), time_(time), threshold_(20), isRefractory_(0), tau_(20.), tauRef_(2), h_(0.1), R_(20), J_(0.1), I_(I), spike_(false), buffer_(16, 0), D_(D/0.1), poisson_generator_(Vext_*h_)  {}
 	//:  V_(0), nb_spikes_(0), time_(time), threshold_(20), isRefractory_(0), tau_(20.), tauRef_(2), h_(0.1), R_(20), J_(0.1), I_(I), spike_(false), buffer_(((D/h_) +1)	, 0), D_(D/0.1)  {}
 	
 //D/h +1
@@ -30,9 +30,7 @@ double Neuron::getJ() const {return J_;}
 
 int Neuron::getD() const {return D_; }
 
-vector<int>  &Neuron::getSendTo() const { return SendTo_; }
-
-//double Neuron::getI() const { return I_;}
+vector<int> const& Neuron::getSendTo() const { return SendTo_; }
 
 //======================================================================
 //setters
@@ -41,7 +39,6 @@ vector<int>  &Neuron::getSendTo() const { return SendTo_; }
 void Neuron::setV (const double& V) { V_= V; }
 void Neuron::setSendTo (const double& n) { SendTo_.push_back(n); }
 
-//void Neuron::setI (const double& I) { I_ = I}
 
 //======================================================================
 //Methods
@@ -55,7 +52,7 @@ bool Neuron::update() {
 		spike_ = false;
 		//to do :clear the buffer at the times where the neuron is refractory (copy the fct getValue buffer without a return)
 	} else {
-		V_ =  (exp(-h_/tau_)*V_ + I_*R_*(1-exp(-h_/tau_)) + getValueBuffer() + poisson_generator_(gene)*J_); ///ici on va ajouter le nombre de J qu'il y a dans le buffer du neuron au temps actuel
+		V_ =  (exp(-h_/tau_)*V_ + I_*R_*(1-exp(-h_/tau_)) + getValueBuffer() + poisson()*J_); ///ici on va ajouter le nombre de J qu'il y a dans le buffer du neuron au temps actuel
 	}
 			
 	if (V_ > threshold_ ) {
@@ -85,5 +82,12 @@ double Neuron::getValueBuffer() {
 	double J(buffer_[bufferTime]);
 	buffer_[bufferTime] =0; ///on reinitialise la cellule du buffer qu'on vient de lire a 0
 	return J;
+}
+
+int Neuron::poisson() {
+	static random_device rd;
+	mt19937 gene(rd());
+	int d(poisson_generator_(gene));
+	return d;
 }
 
