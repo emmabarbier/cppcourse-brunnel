@@ -44,7 +44,8 @@ void Neuron::setSendTo (const double& n) { SendTo_.push_back(n); }
 //Methods
 //======================================================================
 
-bool Neuron::update() {
+bool Neuron::update(bool pois) {
+
 
 	if (isRefractory_ > 0){
 		V_= 0;
@@ -52,7 +53,12 @@ bool Neuron::update() {
 		spike_ = false;
 		//to do :clear the buffer at the times where the neuron is refractory (copy the fct getValue buffer without a return)
 	} else {
-		V_ =  (exp(-h_/tau_)*V_ + I_*R_*(1-exp(-h_/tau_)) + getValueBuffer() + poisson()*J_); ///ici on va ajouter le nombre de J qu'il y a dans le buffer du neuron au temps actuel
+		if(pois) {
+			V_ =  (exp(-h_/tau_)*V_ + I_*R_*(1-exp(-h_/tau_)) + getValueBuffer() + poisson()*J_); ///ici on va ajouter le nombre de J qu'il y a dans le buffer du neuron au temps actuel
+		}
+		else {
+			V_ =  (exp(-h_/tau_)*V_ + I_*R_*(1-exp(-h_/tau_)) + getValueBuffer());
+		}
 	}
 			
 	if (V_ > threshold_ ) {

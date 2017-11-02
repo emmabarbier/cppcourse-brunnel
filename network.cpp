@@ -73,7 +73,7 @@ void Network::update(int General_clock) {
 	for (auto& neuron : NeuronSet_) { ///pour chaque neuron 
 		
 		
-		if (neuron -> update()) {  ///si il a spiké
+		if (neuron -> update(true)) {  ///si il a spiké
 			
 			if ( (count >= 0) and (count<= 9999)) { ///si il est exitateur 
 				

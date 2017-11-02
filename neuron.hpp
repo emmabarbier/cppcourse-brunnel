@@ -48,7 +48,7 @@ public:
 	void setSendTo (const double& n);
 	
 	//methods
-	bool update();
+	bool update(bool poisson);
 	void Interact(Neuron &other);
 	void addJ(double J, int D);
 	double getValueBuffer();
