@@ -8,7 +8,6 @@ int main () {
 	double I;
 	int time_start;
 	int time_end;
-	double h(0.1);
 	
 	cout << "Enter external current : ";
 	cin >> I;
@@ -19,7 +18,6 @@ int main () {
 	cout << "Enter end time (ms) : ";
 	cin >> time_end;
 	
-	//creer un network avec ces trois valeurs
 	Network network(time_start, time_end, I);
 	
 	network.connect();
