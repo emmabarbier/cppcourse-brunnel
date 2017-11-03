@@ -1,6 +1,7 @@
 #include "network.hpp"
 #include <cmath>
 #include <random>
+#include <fstream>
 using namespace std;
 
 //======================================================================
@@ -8,21 +9,10 @@ using namespace std;
 //======================================================================
 
 Network::Network(int time_start, int time_end, double I)
-	: time_start_(time_start), time_end_(time_end), I_(I)
+	: time_start_(time_start), time_end_(time_end/0.1), I_(I), Network_clock_(0)
 	{
 		allocate(n_neurons_);
 	}
-
-//======================================================================
-//getters
-//======================================================================
-
-
-//======================================================================
-//setters
-//======================================================================
-	
-
 
 //======================================================================
 //Methods
@@ -66,38 +56,51 @@ void Network::connect() {
 
 ///la fonction update va iterer sur NeuronSet_. Pour chaque neuron, regarde si il a spike
 /// si il a spike, itere sur tous les neurones connectes a celui la
-void Network::update(int General_clock) {
+void Network::update(int time_end) {
 	
-	int count(0);
+	// declare the file
+	string file_name("spikes.gdf");
 	
-	for (auto& neuron : NeuronSet_) { ///pour chaque neuron 
+	// open the exit flow
+	ofstream exit;
+	exit.open("spikes.gdf");
+	
+	while (Network_clock_ < time_end_) {
 		
-		
-		if (neuron -> update(true)) {  ///si il a spiké
+		int count(0);
+		for (auto& neuron : NeuronSet_) { ///pour chaque neuron
 			
-			if ( (count >= 0) and (count<= 9999)) { ///si il est exitateur 
+			if (neuron -> update(true)) {  ///si il a spiké
 				
-				///il doit iterer sur son tableau sendTo et addJexitatory a chacun des neurons compris dans sendTo
-				for (auto& receiving_neuron : neuron->getSendTo() ) {
-					NeuronSet_[receiving_neuron] -> addJ(Je, General_clock + 15 );
+				if (exit.fail()) {
+					cerr << "Error : impossible to open the file " << file_name << endl;
+				} else {
+					exit << neuron->getTime_() << '\t' << count+1 << '\n';
+				}
+
+				if ( (count >= 0) and (count<= 9999)) { ///si il est exitateur 
+				
+					///il doit iterer sur son tableau sendTo et addJexitatory a chacun des neurons compris dans sendTo
+					for (auto& receiving_neuron : neuron->getSendTo() ) {
+						NeuronSet_[receiving_neuron] -> addJ(Je, Network_clock_ + 15 );
+					}
+				}
+			
+				if ( (count >= 10000) and (count <= 12499)) { ///si il est inhibiteur
+				
+					///il doit iterer sur son tableau sendTo et addJinhibitory a chacun des neurons compris dans sendTo
+					for (auto& receiving_neuron : neuron->getSendTo() ) {
+						NeuronSet_[receiving_neuron] -> addJ(-g_*Je, Network_clock_ + 15);
+					}
+	
+			
 				}
 			}
-			
-			if ( (count >= 10000) and (count <= 12499)) { ///si il est inhibiteur
-				
-				///il doit iterer sur son tableau sendTo et addJinhibitory a chacun des neurons compris dans sendTo
-				for (auto& receiving_neuron : neuron->getSendTo() ) {
-					NeuronSet_[receiving_neuron] -> addJ(-g_*Je, General_clock + 15);
-				}
-	
-			
-			}
-		}
-		count += 1;
+			count += 1;
+		} 
+		
+		Network_clock_ += 1;
+		cout << "general clock = " << Network_clock_*0.1 << endl;
 	} 
-	
+	exit.close();
 }
-
-
-//changer ptr
-//enlever num

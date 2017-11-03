@@ -6,6 +6,12 @@
 #include <random>
 using namespace std;
 
+//!  The Neuron class. 
+/*!
+  This class allows the network to create its neurons.
+*/ 
+ 
+
 class Neuron {
 	
 private:
@@ -27,11 +33,21 @@ private:
 	vector <int> SendTo_;
 	int D_; ///delay in ms --> is converted in steps in teh constructor
 	poisson_distribution<> poisson_generator_; 
-	
+	//faire tableau de temps de spike, a chaque fois qu'il spike pushback ce tableau avec le moment ou il a spiké
+	/**
+	 * atparam 
+	 * at return
+	 * 
+	 * 
+	 */
 	
 public:
 	
-	//constructors
+	//! Neuron constructor.
+    /*!
+      Will create a neuron which's life will start a time "time". It will have an electrical input of I.
+      * When an other neuron sends him a spike, he will receive it with a delay of D.
+    */ 
 	Neuron(int time, double I, double D);
 	
 	//getters

@@ -5,7 +5,7 @@ using namespace std;
 
 
 //======================================================================
-//Constructors
+//Constructor
 //======================================================================
 
 //default constructor
@@ -48,6 +48,7 @@ bool Neuron::update(bool pois) {
 
 
 	if (isRefractory_ > 0){
+		V_ = getValueBuffer();
 		V_= 0;
 		isRefractory_ -=1;
 		spike_ = false;
