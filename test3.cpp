@@ -34,7 +34,7 @@ int main () {
 	if (exit.fail()) {
 		cerr << "Error : impossible to open the file " << file_name << endl;
 	} else {
-		while (General_clock < time_end) {
+		while (General_clock < time_end*10) {
 			n_one.update(false);
 			n_two.update(false);
 			

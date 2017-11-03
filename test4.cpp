@@ -29,7 +29,7 @@ int main () {
 		//cout << "general clock = " << General_clock*0.1 << endl;
 	//}
 	
-	network.update(time_end);
+	network.update();
 	
 	cout << "End of simulation" << endl;
 	return 0;
