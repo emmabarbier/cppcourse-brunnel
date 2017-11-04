@@ -70,11 +70,6 @@ bool Neuron::update(bool pois) {
 	return spike_;
 }
 
-void Neuron::Interact(Neuron &other) {
-	if (other.spike_ == true) {
-		other.V_ += J_;
-	}
-}
 
 void Neuron::addJ(double J, int D) {
 	buffer_[(D)%(buffer_.size())] += J;

@@ -46,9 +46,7 @@ TEST (NeuronTest, Right_buffer) {
 		General_clock += 1;
 		
 		if (n1.getStateSpike_()) {
-			//cout << "Neuron 1 spiked at time : " << n1.getTime_() << endl;
-			n2.addJ(n1.getJ(), (General_clock + n1.getD()));		///envois au buffer de n2 un J avec un delais
-			//cout << "Neuron 2 will receive at time : " << General_clock + n1.getD() << endl;
+			n2.addJ(n1.getJ(), (General_clock + n1.getD()));
 		}
 	}
 	EXPECT_EQ(1, n1.getNb_spikes());
@@ -58,10 +56,8 @@ TEST (NeuronTest, Right_buffer) {
 
 //***************************Now let's test the Network******************************************************
 
-
-
-
-
-
-
-
+///Test if we have well implemented our set of neurons. Thus we test if we have 12 500 neurons.
+TEST (NeuronTest, Number_neurons) {
+	Network network(0, 100, 0);
+	EXPECT_EQ(12500, network.getSize_neuronSet());
+}

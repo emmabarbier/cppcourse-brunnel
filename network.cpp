@@ -83,7 +83,11 @@ void Network::update() {
 			count += 1;
 		} 
 		Network_clock_ += 1;
-		cout << "general clock = " << Network_clock_*0.1 << endl;
+		//cout << "general clock = " << Network_clock_*0.1 << endl;
 	} 
 	exit.close();
 }
+
+int Network::getSize_neuronSet() const { return NeuronSet_.size(); };
+
+

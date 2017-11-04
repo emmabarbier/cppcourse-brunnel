@@ -21,14 +21,6 @@ int main () {
 	Network network(time_start, time_end, I);
 	
 	network.connect();
-	
-	//appeler update de network (lui même appelle update de neuron) avec en argument la general clock
-	//while (General_clock < time_end) {
-		//network.update(General_clock, time_end);
-		//General_clock += 1;
-		//cout << "general clock = " << General_clock*0.1 << endl;
-	//}
-	
 	network.update();
 	
 	cout << "End of simulation" << endl;

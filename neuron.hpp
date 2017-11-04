@@ -26,7 +26,7 @@ private:
 	double tauRef_;			 //!< Time (ms) during wich the neuron is refractory
 	double h_;				 //!< Time step of our simulation : every h, we update the neuron
 	double R_;				 //!< Resistance of the neuron
-	double J_;				 //!< 
+	double J_;				 //!< The input current a neuron gives to the ones he is connected to when it spikes
 	double I_;				 //!< External current
 	bool spike_;			 //!< True if the neuron spiked, false if it did not
 	const int Vext_ = 20;	 //!< 
@@ -111,12 +111,6 @@ public:
 	@return true if the neuron spike, false if it did not
 	 */
 	bool update(bool poisson);
-	
-	/**
-	@brief When we only had two neurons, allowed us to connect them
-	@param The Neuron sending the spike
-	 */
-	void Interact(Neuron &other);
 	
 	/**
 	@brief Adds the value J to the buffer of the neuron with a delay D.

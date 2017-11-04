@@ -14,10 +14,10 @@ int main () {
 	cout << "Enter external current : ";
 	cin >> I;
 	
-	cout << "Enter start time :  ";
+	cout << "Enter start time (ms) :  ";
 	cin >> time_start;
 	
-	cout << "Enter end time : ";
+	cout << "Enter end time (ms) : ";
 	cin >> time_end;
 
 	Neuron n_one(time_start/h,I,1.5);
@@ -42,7 +42,7 @@ int main () {
 			
 			if (n_one.getStateSpike_()) {
 				exit << "Neuron 1 spiked at time : " << n_one.getTime_() << endl;
-				n_two.addJ(n_one.getJ(), (General_clock + n_one.getD()));		///envois au buffer de n_two un J avec un delais
+				n_two.addJ(n_one.getJ(), (General_clock + n_one.getD()));
 			}
 			
 			exit << "Membrane potential on neuron 1 : " << n_one.getV() << " at time : " << n_one.getTime_() << endl;
