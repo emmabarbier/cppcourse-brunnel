@@ -40,9 +40,9 @@ int main () {
 			
 			General_clock += 1;
 			
-			if (n_one.getStateSpike_()) {
+			if (n_one.getStateSpike_()) { //if neuron 1 spiked
 				exit << "Neuron 1 spiked at time : " << n_one.getTime_() << endl;
-				n_two.addJ(n_one.getJ(), (General_clock + n_one.getD()));
+				n_two.addJ(n_one.getJ(), (General_clock + n_one.getD())); //We add an input of J to neuron 2 with a delay
 			}
 			
 			exit << "Membrane potential on neuron 1 : " << n_one.getV() << " at time : " << n_one.getTime_() << endl;

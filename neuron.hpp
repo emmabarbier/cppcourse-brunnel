@@ -59,7 +59,7 @@ public:
 	 */
 	double getV() const;
 	
-	/**@return The nb of spikes of the neuron
+	/**@return The number of spikes of the neuron
 	 */
 	double getNb_spikes() const;
 	
@@ -67,7 +67,7 @@ public:
 	 */
 	double getTime_() const;
 	
-	/**@return The number of spikes of the neuron
+	/**@return if the neuron spiked(true) or not(false)
 	 */
 	bool getStateSpike_() const;
 	
@@ -130,6 +130,5 @@ public:
 	 */
 	int poisson();
 };
-
 
 #endif

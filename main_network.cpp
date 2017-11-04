@@ -18,10 +18,10 @@ int main () {
 	cout << "Enter end time (ms) : ";
 	cin >> time_end;
 	
-	Network network(time_start, time_end, I);
+	Network network(time_start, time_end, I); //We create the network
 	
-	network.connect();
-	network.update();
+	network.connect(); //We connect the neurons
+	network.update();  //We update the network
 	
 	cout << "End of simulation" << endl;
 	return 0;

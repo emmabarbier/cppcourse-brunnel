@@ -50,7 +50,9 @@ public:
 	 * *************************************************************************************/
 	 
 	
-	/**@return The size of the NeuronSet
+	/**
+	@brief useful for the google test on the network
+	@return The size of the NeuronSet
 	 */
 	int getSize_neuronSet() const;
 	

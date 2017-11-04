@@ -57,10 +57,12 @@ void Network::update() {
 	exit.open("spikes.gdf");
 	
 	while (Network_clock_ < time_end_) {
-		int count(0);
-		for (auto& neuron : NeuronSet_) {
+		
+		int count(0);	//gives us the ID of the neuron
+		
+		for (auto& neuron : NeuronSet_) { //for each neuron
 			
-			if (neuron -> update(true)) {
+			if (neuron -> update(true)) { //if it spiked
 				
 				if (exit.fail()) {
 					cerr << "Error : impossible to open the file " << file_name << endl;
@@ -68,26 +70,23 @@ void Network::update() {
 					exit << neuron->getTime_()*10 << '\t' << count+1 << '\n';
 				}
 
-				if ( (count >= 0) and (count<= 9999)) { 
-					for (auto& receiving_neuron : neuron->getSendTo() ) {
-						NeuronSet_[receiving_neuron] -> addJ(Je, Network_clock_ + 15 );
+				if ( (count >= 0) and (count<= 9999)) { 								//if it is excitatory
+					for (auto& receiving_neuron : neuron->getSendTo() ) {				//for each neuron receiving signals from the neuron we are updating
+						NeuronSet_[receiving_neuron] -> addJ(Je, Network_clock_ + 15 ); //we add an excitatory input
 					}
 				}
 			
-				if ( (count >= 10000) and (count <= 12499)) {
-					for (auto& receiving_neuron : neuron->getSendTo() ) {
-						NeuronSet_[receiving_neuron] -> addJ(-g_*Je, Network_clock_ + 15);
+				if ( (count >= 10000) and (count <= 12499)) { 							    //if it is refractory
+					for (auto& receiving_neuron : neuron->getSendTo() ) {				    //for each neuron receiving signals from the neuron we are updating
+						NeuronSet_[receiving_neuron] -> addJ(-g_*Je, Network_clock_ + 15);  //we add an inhibitory input
 					}
 				}
 			}
 			count += 1;
 		} 
 		Network_clock_ += 1;
-		//cout << "general clock = " << Network_clock_*0.1 << endl;
 	} 
 	exit.close();
 }
 
-int Network::getSize_neuronSet() const { return NeuronSet_.size(); };
-
-
+int Network::getSize_neuronSet() const { return NeuronSet_.size(); } 

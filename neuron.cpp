@@ -10,7 +10,7 @@ using namespace std;
 
 
 Neuron::Neuron(int time, double I, double D)
-	:  V_(0), nb_spikes_(0), time_(time), threshold_(20), isRefractory_(0), tau_(20.), tauRef_(2), h_(0.1), R_(20), J_(0.1), I_(I), spike_(false), buffer_(16, 0), D_(D/0.1), poisson_generator_(Vext_*h_)  {}
+	:  V_(0), nb_spikes_(0), time_(time), threshold_(20), isRefractory_(0), tau_(20.), tauRef_(2), h_(0.1), R_(20), J_(0.1), I_(I), spike_(false), buffer_((D/h_)+1, 0), D_(D/0.1), poisson_generator_(Vext_*h_)  {}
 
 //======================================================================
 //getters
@@ -20,7 +20,7 @@ double Neuron::getV() const { return V_; }
 
 double Neuron::getNb_spikes() const { return nb_spikes_; }
 
-double Neuron::getTime_() const { return time_*0.1; } 
+double Neuron::getTime_() const { return time_*0.1; } //*0.1 to convert steps to ms
 
 bool Neuron::getStateSpike_() const { return spike_;}
 
@@ -46,12 +46,12 @@ bool Neuron::update(bool pois) {
 
 
 	if (isRefractory_ > 0){
-		V_ = getValueBuffer();
-		V_= 0;
+		V_ = getValueBuffer();	 //we use this function to set the values of the buffer at 0 during the times it is refractory
+		V_= 0;					 //we reset the value of the membrane potential at 0 because the neuron is refractory
 		isRefractory_ -=1;
 		spike_ = false;
 	} else {
-		if(pois) {
+		if(pois) { 				//so that our Google tests can work, we have the possibility of using the poisson generator or not
 			V_ =  (exp(-h_/tau_)*V_ + I_*R_*(1-exp(-h_/tau_)) + getValueBuffer() + poisson()*J_);
 		}
 		else {
@@ -76,9 +76,9 @@ void Neuron::addJ(double J, int D) {
 }
 
 double Neuron::getValueBuffer() {
-	int bufferTime ((time_+1)% buffer_.size()); //ici on accede a la cellule du buffer qui nous interesse a partir du temps du neuron
-	double J(buffer_[bufferTime]);
-	buffer_[bufferTime] =0; 
+	int bufferTime ((time_+1)% buffer_.size()); 	//we access the cell of the buffer we are interested in using the time of the neuron
+	double J(buffer_[bufferTime]);					//we access the value of the buffer at t
+	buffer_[bufferTime] =0; 						//we reset to 0 the value of the buffer at that time 
 	return J;
 }
 
