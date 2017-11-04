@@ -47,11 +47,14 @@ III- HOW TO RUN THE PROGRAM ON YOUR COMPUTER
      
  B) A NETWORK OF NEURONS :
       Here we will see how to simulate 12 500 NEURONS interacting.
-      Now the neurons have no input current (even if the user can still set one). But they are subject to a "background noise" which
-      randomly sends them an input. This input is the same value as if they received a spike from an other neuron.
-      You should also know that the network will be made of 10 000 excitatory neurons and 2 500 inhibitory neurons. Each neuron will
-      receive 1 000 excitatory connexions and 250 inhibitory connexions.
+      Now the neurons have no input current (even if the user can still set one). But they are subject to a "background noise"
+      which randomly sends them an input. This input is the same value as if they received a spike from an other neuron.
+      You should also know that the network will be made of 10 000 excitatory neurons and 2 500 inhibitory neurons. Each neuron
+      willreceive 1 000 excitatory connexions and 250 inhibitory connexions.
       Be aware that we still have a delay when neurons send signals to eachother.
+      Also, here we will create the figure C of the Brunnel's simulation because in this program, g=5 and Vext/Vthr=2.
+      If you want to see the figure A, B and D, you just have to run the following python code on Jupyter with spikesA.gdf,
+      spikesB.gdf, spikesD.gdf instead of spikes.gdf.
       
       How to proceed :
       In your terminal, go where you uploaded the files "neuron.hpp, neuron.cpp, CMakeLists.txt, network.hpp, network.cpp,
@@ -72,8 +75,8 @@ III- HOW TO RUN THE PROGRAM ON YOUR COMPUTER
       Note that if you set a larger end time, the simulation will take longer, and your spikes.gdp will be heavier.
       After that the message "End of simulation" will appear on your terminal.
       Now you can go in the file build.
-      A spikes.gdf is created. You can open it and see in the first column the times when the neurons spiked, and in the second column,
-      the ID of the corresponding neuron.
+      A spikes.gdf is created. You can open it and see in the first column the times when the neurons spiked, and in the second
+      column,the ID of the corresponding neuron.
       
       Now you want to have a representation of the spikes of your neurons. So we will make a plot by doing the following :
       Go on internet.
@@ -100,8 +103,8 @@ III- HOW TO RUN THE PROGRAM ON YOUR COMPUTER
       You will see a rasta plot and a histogram appear.
       On the X axis is the time in ms. On the Y axis is the ID of the neuron which spiked at that time.
       On the histogram, you can observe that it forms peaks. This is explained by the fact that when the number of
-      spiking neuron is lowering, the ihibition is strong, it wins over the excitation of the neurons. Right after, the excitations wins
-      over the inhibition, thus the number of spiking neurons increase.
+      spiking neuron is lowering, the ihibition is strong, it wins over the excitation of the neurons. Right after, the
+      excitations wins over the inhibition, thus the number of spiking neurons increase.
       
       
  C) GOOLE TESTS :
