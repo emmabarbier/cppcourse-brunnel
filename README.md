@@ -1,14 +1,5 @@
 # cppcourse-brunnel
 
-SUMMARY :
-I- INTRODUCTION
-II- PRESENTATION
-III- HOW TO RUN THE PROGRAM ON YOUR COMPUTER
-  A) TWO NEURONS
-  B) A NETWORK OF NEURONS
-  C) GOOGLE TESTS
-  D) DOXYGEN
-
 I- INTRODUCTION
 In this README, you will find a brief description of the NeuronProject, and everything you need to know to make it run on your computer, using the files presented in this GitHub repository.
 
@@ -19,9 +10,9 @@ III- HOW TO RUN THE PROGRAM ON YOUR COMPUTER
 
 
  A) TWO NEURONS :
-      Here we will see how to simulate two neurons interacting. Neuron 1 will receive an input current chosen by the user while neuron 2
-      will receive no input current, but only the stimulation of neuron 1 when it spikes. You should also be aware that neuron 2 will
-      receive the input from neuron 1 with a delay set at 1.5ms.
+      Here we will see how to simulate two neurons interacting. Neuron 1 will receive an input current chosen by the user while
+      neuron 2 will receive no input current, but only the stimulation of neuron 1 when it spikes. You should also be aware that
+      neuron 2 will receive the input from neuron 1 with a delay set at 1.5ms.
       
       How to proceed :
       In your terminal, go where you uploaded the files "neuron.hpp, neuron.cpp, main_two_neurons.cpp, CmakeLists.txt".
@@ -38,11 +29,12 @@ III- HOW TO RUN THE PROGRAM ON YOUR COMPUTER
       - the end time (ms), enter a value of 100 for example.
       
       Now you can go in the file build.
-      A MembranePotential.txt is created. You can open it and see that we have a spike of neuron 1 at 92.4ms, then neuron 2 receives an
-      input of value 0.1 at time 93.9, which is 1.5ms after the spike of neuron 1.
+      A MembranePotential.txt is created. You can open it and see that we have a spike of neuron 1 at 92.4ms, then neuron 2
+      receives an input of value 0.1 at time 93.9, which is 1.5ms after the spike of neuron 1.
       Note that you can set the end time at 400. You will see spikes of neuron 1 at times 92.4ms, 186.8ms, 281.2ms and 375.6ms
       
-      --> We have a good connection between two neurons. Now we can simulate many neurons to get closer to a brain-like simulation.
+      --> We have a good connection between two neurons. Now we can simulate many neurons to get closer to a brain-like
+      simulation.
      
      
  B) A NETWORK OF NEURONS :
@@ -121,8 +113,8 @@ III- HOW TO RUN THE PROGRAM ON YOUR COMPUTER
       ./NeuronProject_unittest
       
       Now you should see that all the tests passed.
-      If you want to have further information about what the google tests do, you can open the NeuronProject_unittest.cpp. A description
-      of the role of each of them is included.
+      If you want to have further information about what the google tests do, you can open the NeuronProject_unittest.cpp. A
+      description of the role of each of them is included.
       
  D) DOXYGEN :
       Here we will see how to generate a Doxygen document.
@@ -137,5 +129,5 @@ III- HOW TO RUN THE PROGRAM ON YOUR COMPUTER
       make doc
 
       Now you can go in the file html that was just created.
-      Click on the annoted.html document. It will open a web page on which you can find our two classes (neuron and network). If you click
-      on the network or neuron class, you will have furhter information on how it was implemented.
+      Click on the annoted.html document. It will open a web page on which you can find our two classes (neuron and network). If
+      you click on the network or neuron class, you will have furhter information on how it was implemented.
