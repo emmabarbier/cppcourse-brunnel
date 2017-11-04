@@ -10,7 +10,7 @@ using namespace std;
 
 
 Neuron::Neuron(int time, double I, double D)
-	:  V_(0), nb_spikes_(0), time_(time), threshold_(20), isRefractory_(0), tau_(20.), tauRef_(2), h_(0.1), R_(20), J_(0.1), I_(I), spike_(false), buffer_((D/h_)+1, 0), D_(D/0.1), poisson_generator_(Vext_*h_)  {}
+	:  V_(0), nb_spikes_(0), time_(time), threshold_(20), isRefractory_(0), tau_(20.), tauRef_(2), h_(0.1), R_(20), J_(0.1), I_(I), spike_(false), buffer_((D/h_)+1, 0), D_(D/0.1) {}
 
 //======================================================================
 //getters
@@ -85,7 +85,8 @@ double Neuron::getValueBuffer() {
 int Neuron::poisson() {
 	static random_device rd;
 	mt19937 gene(rd());
-	int d(poisson_generator_(gene));
-	return d;
+	double v = (threshold_* eta_ )/(J_ * tau_);
+	poisson_distribution<> poisson_generator_(v*0.1);
+	return poisson_generator_(gene);
 }
 

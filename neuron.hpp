@@ -33,7 +33,7 @@ private:
 	vector <double> buffer_; //!< Buffer of the neuron, stores the incoming spikes with a delay
 	vector <int> SendTo_;	 //!< IDs of the neurons to which the neuron sends spikes
 	int D_; 				 //!< Delay of reception of a spike from an other neuron (ms)
-	poisson_distribution<> poisson_generator_;  //!< poisson generator
+	const double eta_ = 2;	 //!< constant needed to calculate the poisson generator	 
 	
 	
 public:

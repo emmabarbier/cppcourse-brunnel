@@ -24,7 +24,7 @@ private :
 	const unsigned int n_neurons_ = 12500;  //!< Number of neurons
 	const int Ne_ = 10000;					//!< Number of excitatory neurons
 	const int Ni_ = 2500;					//!< Number of inhibitory neurons
-	const int g_= 5;						//!< Weight of the connection
+	const double g_= 5;						//!< Weight of the connection
 	const unsigned int Ce = 1000;			//!< Number of excitatory connexions a neuron receives
 	const unsigned int Ci = 250;			//!< Number of inhibitory connexions a neuron receives
 	double Je = 0.1;						//!< Current added to the neurons the neurons send spikes to when they are excitatory
