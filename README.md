@@ -10,10 +10,10 @@ III- HOW TO RUN THE PROGRAM ON YOUR COMPUTER
   D) DOXYGEN
 
 I- INTRODUCTION
-In this README, you will find a brief description of the NeuronProject, and every thing you need to know to make it run on your computer, using the files presented in this GitHub repository.
+In this README, you will find a brief description of the NeuronProject, and everything you need to know to make it run on your computer, using the files presented in this GitHub repository.
 
 II- PRESENTATION
-With this program, we are trying to simulate Nicolas Brunnel's model of "the dynamics of sparsely connected excitatory and inhibitory integrate-and-fire neurons". First we simulated the interaction of only two neurons. Then we moved forward to the simulation of a network of 12 500 neurons. The neurons are connected to one another and thus their behaviour has an inpact on the rest of the network.
+With this program, we are trying to simulate Nicolas Brunnel's model of "the dynamics of sparsely connected excitatory and inhibitory integrate-and-fire neurons". First we simulated the interaction between only two neurons. Then we moved forward to the simulation of a network of 12 500 neurons. The neurons are connected to one another and thus their behaviour has an inpact on the rest of the network.
 
 III- HOW TO RUN THE PROGRAM ON YOUR COMPUTER
 
@@ -38,11 +38,11 @@ III- HOW TO RUN THE PROGRAM ON YOUR COMPUTER
       - the end time (ms), enter a value of 100 for example.
       
       Now you can go in the file build.
-      A MembranePotential.txt was created. You can open it and see that we have a spike of neuron 1 at 92.4ms, then neuron 2 receives an
+      A MembranePotential.txt is created. You can open it and see that we have a spike of neuron 1 at 92.4ms, then neuron 2 receives an
       input of value 0.1 at time 93.9, which is 1.5ms after the spike of neuron 1.
       Note that you can set the end time at 400. You will see spikes of neuron 1 at times 92.4ms, 186.8ms, 281.2ms and 375.6ms
       
-      --> We have a good connection between two neurons. Now we can simulate many neurons to get closer to a brain like simulation.
+      --> We have a good connection between two neurons. Now we can simulate many neurons to get closer to a brain-like simulation.
      
      
  B) A NETWORK OF NEURONS :
@@ -72,14 +72,14 @@ III- HOW TO RUN THE PROGRAM ON YOUR COMPUTER
       Note that if you set a larger end time, the simulation will take longer, and your spikes.gdp will be heavier.
       After that the message "End of simulation" will appear on your terminal.
       Now you can go in the file build.
-      A spikes.gdf was created. You can open it and see in the first column the times when the neurons spiked, and in the second column,
+      A spikes.gdf is created. You can open it and see in the first column the times when the neurons spiked, and in the second column,
       the ID of the corresponding neuron.
       
-      Now you want to have a representation of the spikes of your neurons. So we will make a graphic by doing the following :
+      Now you want to have a representation of the spikes of your neurons. So we will make a plot by doing the following :
       Go on internet.
       Go on the welcome page of Jupyter.
       Click on "Try it in your browser".
-      Upload the file spikes.gdf
+      Upload the file : spikes.gdf
       Click on new > Python 3
       Copy paste the following code : 
       
@@ -98,8 +98,8 @@ III- HOW TO RUN THE PROGRAM ON YOUR COMPUTER
          
       Click on Run.
       You will see a rasta plot and a histogram appear.
-      On the X axis is the tie in ms. On the Y axis is the ID of the neuron who spiked at that time.
-      On the histogram, you can observe that it forms some kinds of "mountains". This is explained by the fact that when the number of
+      On the X axis is the time in ms. On the Y axis is the ID of the neuron which spiked at that time.
+      On the histogram, you can observe that it forms peaks. This is explained by the fact that when the number of
       spiking neuron is lowering, the ihibition is strong, it wins over the excitation of the neurons. Right after, the excitations wins
       over the inhibition, thus the number of spiking neurons increase.
       
